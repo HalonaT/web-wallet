@@ -1,0 +1,27 @@
+{
+    "name": "Xian Wallet",
+    "version": "2.87",
+    "description": "A cutting-edge self-custodial web3 wallet for the Xian Network",
+    "manifest_version": 3,
+    "action": {
+        "default_icon": "assets/logo.png"
+    },
+    "icons": {
+        "48": "assets/logo.png"
+    },
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+          "matches": ["<all_urls>"],
+          "run_at": "document_end",
+          "all_frames": true,
+          "js": ["content.js"]
+        }
+      ],
+    "permissions": ["storage"],
+    "content_security_policy": {
+      "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
+    }
+  }

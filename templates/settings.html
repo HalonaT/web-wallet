@@ -1,0 +1,75 @@
+<h1 class="app-box-title">Settings</h1>
+<p class="app-box-description">Change your wallet settings.</p>
+<div class="app-box-form">
+    <div class="alert alert-danger" role="alert" id="settingsError" style="display: none;"></div>
+    <div class="alert alert-success" role="alert" id="settingsSuccess" style="display: none;"></div>
+    
+    <div class="form-group">
+        <div class="wallet-section-header">
+            <label>Wallets</label>
+            <div class="wallet-actions">
+                <button class="btn btn-primary btn-sm" id="btn-add-create-wallet">
+                    <span><i class="icon" data-lucide="plus-circle"></i> Create wallet</span>
+                </button>
+                <button class="btn btn-secondary btn-sm" id="btn-add-import-wallet">
+                    <span><i class="icon" data-lucide="download"></i> Import wallet</span>
+                </button>
+            </div>
+        </div>
+        <div id="walletList" class="wallet-list-improved"></div>
+    </div>
+
+    <!-- Unified form group for managing RPC URLs -->
+    <div class="form-group">
+        <label for="rpc_manager">RPC</label>
+        
+        <!-- Dropdown to select existing RPC URLs -->
+        <div class="input-group mb-2">
+            <select class="form-control" id="rpc_select">
+                <option value="https://node.xian.org,https://explorer.xian.org">RPC 1 - Mainnet</option>
+                <option value="https://testnet.xian.org,https://testnet-explorer.xian.org">RPC 2 - Testnet</option>
+            </select>
+            <!-- Button to remove selected RPC -->
+            <div class="input-group-append">
+                <button class="btn btn-danger" id="remove_rpc_button"><i class="icon" data-lucide="trash-2"></i></button>
+            </div>
+        </div>
+
+        <!-- Input to add a new RPC URL -->
+        <div class="input-group mb-2">
+            <input type="text" class="form-control" id="add_rpc_input" placeholder="Enter new RPC URL">
+            <!-- Button to add the new RPC URL -->
+            <div class="input-group-append">
+                <button class="btn btn-secondary" id="add_rpc_button"><i class="icon" data-lucide="plus"></i></button>
+            </div>
+        </div>
+        <div class="input-group">
+            <input type="text" class="form-control" id="add_explorer_input" placeholder="Enter new Explorer URL">
+        </div>
+    </div>
+    
+    
+    <div class="form-group">
+        <label for="private_key_export">Active Wallet - Private Key</label>
+        <p>Export the private key for your currently active wallet. If you lose your private key, you will lose access to your wallet and funds.</p>
+        <div class="active-wallet-info" id="activeWalletInfo" style="display: none;">
+            <div class="active-wallet-label" id="activeWalletLabel">Loading...</div>
+            <div class="active-wallet-address" id="activeWalletAddress">Loading...</div>
+        </div>
+        <a href="#" id="private_key_export" class="btn btn-secondary">Export Private Key</a>
+    </div>
+    <div class="form-group" style="display: none;">
+        <label for="remove_wallet_export">Active Wallet - Remove</label>
+        <p>Remove your currently active wallet from this browser. This will not delete your wallet or funds, but you will need to import it again to access it.</p>
+        <a href="#" id="remove_wallet_export" class="btn btn-danger">Remove Active Wallet</a>
+    </div> 
+    <div class="form-group">
+        <label for="version">Wallet Version</label>
+        <p id="version"></p>
+    </div>
+
+    <div class="btn-group" style="display:none">
+        <button class="btn btn-secondary" id="settings-back">Back</button>
+    </div>
+</div>
+<script src="templates/page_js/settings.js"></script>

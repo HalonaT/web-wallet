@@ -1,0 +1,65 @@
+<main class="onboard-card" aria-label="Import wallet">
+
+  <header>
+    <h1 id="import-wallet-title" class="app-box-title">Import your wallet</h1>
+    <p id="import-wallet-step" class="onboard-step">Step&nbsp;2&nbsp;/&nbsp;2</p>
+  </header>
+
+  <p id="import-wallet-description" class="app-box-description">
+    Paste your <strong>private key</strong> and set a password to encrypt it.
+    <span class="note-danger">If you forget the password, it can’t be recovered.</span>
+  </p>
+
+  <form id="importWalletForm" class="form-stack">
+
+    <!-- error banner -->
+    <div id="importWalletError"
+         class="alert alert-danger alert--hidden"
+         role="alert" aria-live="polite"></div>
+
+    <!-- private key -->
+    <label for="import_privateKey">Private&nbsp;key</label>
+    <input id="import_privateKey"
+              class="form-control"
+                placeholder="Paste your private key here"
+              rows="1" required />
+
+    <!-- pwd -->
+    <label for="import_password">Password</label>
+    <div>
+       <input id="import_password" type="password"
+              class="form-control"
+              placeholder="Enter password" required
+              autocomplete="new-password">
+       
+    </div>
+
+    <!-- confirm -->
+    <label for="import_confirmPassword">Confirm&nbsp;password</label>
+    <div>
+       <input id="import_confirmPassword" type="password"
+              class="form-control"
+              placeholder="Re-enter password" required
+              autocomplete="new-password">
+    </div>
+
+    <!-- actions -->
+    <div class="btn-group">
+      <button id="btn-import-wallet-import-wallet"
+              class="btn btn-primary"
+              type="submit">
+        <i data-lucide="upload"></i>
+        Import&nbsp;wallet
+      </button>
+
+      <button id="btn-import-wallet-back"
+              class="btn btn-secondary"
+              type="button">
+        <i data-lucide="arrow-left"></i>
+        Back
+      </button>
+    </div>
+  </form>
+</main>
+
+<script src="templates/page_js/import-wallet.js"></script>

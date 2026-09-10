@@ -1,0 +1,30 @@
+<h1 class="app-box-title">Create Advanced Transaction</h1>
+<p class="app-box-description">Directly interact with a smart contract on the Xian Network.</p>
+<div class="app-box-form">
+    <div class="alert alert-danger" role="alert" id="sendAdvTxError" style="display: none;"></div>
+    <div class="alert alert-success" role="alert" id="sendAdvTxSuccess" style="display: none;"></div>
+    <div class="form-group">
+        <label for="contractName">Contract</label>
+        <input type="text" class="form-control" id="contractName" placeholder="Enter the contract name" required>
+    </div>
+    <div class="form-group">
+        <label for="functionName">Function</label>
+        <select class="form-control" id="functionName" required>
+        </select>
+    </div>
+    <div class="form-group" id="adv_args" style="display: none;">
+        <label for="kwargs">Keyword Arguments</label>
+        <div id="adv_kwargs">
+           
+        </div>
+    </div>
+    <div class="form-group" id="tokenFeeContainer" style="display: none;">
+        <label for="transactionFee">Transaction Fee: 
+             <span id="estimation-loading">Calculating..</span>
+            <span id="estimation-result" style="display:none"><span id="tokenFee"></span> Stamps (<span id="tokenFeeXian"></span> Xian)</label></span>
+    </div>
+    <div class="btn-group">
+        <button class="btn btn-primary" id="btn-adv-tx-send">Send Transaction</button>
+    </div>
+</div>
+<script src="templates/page_js/advanced-transaction.js"></script>

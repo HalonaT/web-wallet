@@ -1,0 +1,61 @@
+<main class="onboard-card" aria-label="Create wallet">
+
+  <header>
+    <h1 id="create-wallet-title" class="app-box-title">Create your wallet</h1>
+    <p id="create-wallet-step" class="onboard-step">Step&nbsp;2&nbsp;/&nbsp;2</p>
+  </header>
+
+  <!-- description -->
+  <p id="create-wallet-description" class="app-box-description">
+     Choose a password to <strong>encrypt your private key</strong>.
+     <span class="note-danger">If you forget it, we can’t recover it.</span>
+  </p>
+
+  <!-- form -->
+  <form id="createWalletForm" class="form-stack">
+
+    <!-- error banner -->
+    <div id="createWalletError" class="alert alert-danger alert--hidden"
+         role="alert" aria-live="polite"></div>
+
+    <label for="password">Password</label>
+    <div>
+       <input  id="password" type="password" class="form-control"
+               placeholder="Enter password" required
+               autocomplete="new-password" aria-describedby="pwdHint">
+       
+    </div>
+
+    <label for="confirmPassword">Confirm password</label>
+    <div>
+       <input  id="confirmPassword" type="password" class="form-control"
+               placeholder="Re-enter password" required
+               autocomplete="new-password">
+    </div>
+
+    <small id="pwdHint" class="form-hint">
+      Minimum 6 chars · numbers &amp; symbols recommended
+    </small>
+
+    <!-- actions -->
+    <div class="btn-group">
+       <button id="btn-create-wallet-create"
+               class="btn btn-primary" type="submit">
+           <i data-lucide="key-round"></i>
+           Create&nbsp;wallet
+       </button>
+
+       <button id="btn-create-wallet-back"
+               class="btn btn-secondary" type="button">
+           <i data-lucide="arrow-left"></i>
+           Back
+       </button>
+    </div>
+  </form>
+
+  <p class="backup-reminder">
+      After creation, export your private key in&nbsp;<em>Settings → Export Private Key</em>.
+  </p>
+</main>
+
+<script src="templates/page_js/create-wallet.js"></script>

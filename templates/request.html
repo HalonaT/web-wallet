@@ -1,0 +1,27 @@
+<h1 class="app-box-title">Request from <span id="requestFrom">Site</span></h1>
+<p class="app-box-description"><span id="requestFrom2">Site</span> is requesting to send a transaction on your behalf.</p>
+<div class="app-box-form">
+    <div class="alert alert-danger" role="alert" id="requestError" style="display: none;"></div>
+    <div class="alert alert-success" role="alert" id="requestSuccess" style="display: none;"></div>
+    <div class="form-group">
+        <label for="contractRequest">Contract</label>
+        <p id="contractRequest" style="text-overflow: ellipsis;overflow: hidden;"></p>
+    </div>
+    <div class="form-group">
+        <label for="methodRequest">Method</label>
+        <p id="methodRequest" style="text-overflow: ellipsis;overflow: hidden;"></p>
+    </div>
+    <div class="form-group">
+        <label for="kwargsRequest">Kwargs</label>
+        <p id="kwargsRequest" style="text-overflow: ellipsis;overflow: hidden;"></p>
+    </div>
+    <div class="form-group">
+        <label for="stampLimitRequest">Stamp Limit</label>
+        <p id="stampLimitRequest" style="text-overflow: ellipsis;overflow: hidden;"></p>
+    </div>
+    <div class="btn-group">
+        <button class="btn btn-primary" id="request-accept-request">Accept Request</button>
+        <button class="btn btn-secondary" id="request-reject-request">Reject Request</button>
+    </div>
+</div>
+<script src="templates/page_js/request.js"></script>

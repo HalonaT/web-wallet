@@ -1,0 +1,39 @@
+<div class="title-container">
+    <h1 class="app-box-title">Wallet</h1>
+</div>
+<div class="app-box-form" style="display: flex;flex-direction: column;height:100%">
+    <div id="wallet-info" class="wallet-info-card">
+        <div class="wallet-info-title">
+            <b>Wallet Address</b> 
+        </div>
+        <div class="wallet-info-address">
+            <span id="walletAddress"></span>
+            <a href="#" id="wallet-copy-address" title="Copy Address"><i class="icon" data-lucide="copy"></i></a>
+        </div>
+    </div>
+    <div class="wallet-tabs">
+        <a href="#" id="wallet-tokens-tab" id="wallet-change-tab-wallet-tokens" class="active">Tokens</a>
+        <a href="#" id="wallet-nfts-tab" id="wallet-change-tab-nfts" style="display: none;">NFTs</a>
+        <a href="#" id="local-activity-tab" id="wallet-change-tab-local-activity">History</a>
+    </div>
+    <div id="wallet-tokens" class="token-list" style=" flex-grow: 1;display: flex;flex-flow: column nowrap;overflow: hidden;">
+       
+    </div>
+    <div id="wallet-nfts" class="token-list" style=" flex-grow: 1;display: flex;flex-flow: column nowrap;overflow: auto;display: none;">
+       
+    </div>
+    <div id="local-activity" style="display: none; flex-grow: 1;flex-flow: column nowrap;overflow: auto;">
+        <div class="title-container">
+            <h2 class="token-list-title">Local Activity</h2>
+            <i data-lucide="trash" class="icon"  id="wallet-clear-local-activity" title="Clear Local Activity"></i>
+        </div>
+        <div id="local-activity-list">
+            No activity yet.  
+        </div>
+    </div>
+    <div style="display:flex;justify-content: space-between;margin-top: 20px;gap:10px;" id="wallet-adv-btns">
+        <button type="button" class="btn btn-secondary" id="wallet-refresh-all"><i data-lucide="refresh-ccw" class="icon"></i> Refresh All</button>
+        <button type="button" class="btn btn-primary" id="wallet-send-adv-tx"><i data-lucide="send" class="icon"></i> Advanced Transaction</button>
+    </div>
+</div>
+<script src="templates/page_js/wallet.js"></script>

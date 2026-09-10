@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xian Wallet</title>
+    <meta name="description" content="Manage your Xian wallet. No browser extension required. No server-side processing. Open-Source.">
+
+    <link rel="icon" type="image/png" href="assets/logo.png">
+
+    <link rel="stylesheet" href="css/style.css?v=1">
+    <link rel="stylesheet" href="css/custom.css?v=133723">
+    <link rel="stylesheet" href="css/lint.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/codemirror.css">
+    <script src="js/dark-mode.js?v=1"></script>
+</head>
+<body class="dark-mode">
+    <nav class="navbar">
+          <div class="navbar-brand" href="index.html">
+
+                <div class="brand-left" style="display:flex;align-items:center;gap:1rem;">
+                    <div class="app-name"><img src="assets/xian-white.svg" alt="Xian Connect Logo" class="app-logo"><h2></h2></div>
+                    <div class="online-status" id="onlineStatus">Node Status <div class='grey-circle' title='Node Status is Unknown'></div></div>
+                </div>
+                <div class="nav-actions">
+                    <div id="privacyIndicator" class="privacy-indicator hidden" title="Privacy Mode">
+                        <i class="icon" data-lucide="eye-off"></i>
+                        <span>Privacy</span>
+                    </div>
+                    <div class="nav-dropdown">
+                        <button class="icon-btn" id="navMenuBtn" title="Menu"><i class="icon" data-lucide="more-horizontal"></i></button>
+                        <div id="navMenu" class="nav-menu hidden">
+                            <div class="menu-group">Privacy</div>
+                            <label class="menu-switch"><input type="checkbox" id="privacySwitch"><span class="slider"></span><span class="label">Privacy Mode</span><span id="privacyBadge" class="menu-badge">Off</span></label>
+                            <div class="menu-sep"></div>
+                            <div class="menu-group">Quick actions</div>
+                            <button class="menu-item" data-action="receive"><i class="icon" data-lucide="download"></i><span>Receive</span></button>
+                            <button class="menu-item" data-action="copy"><i class="icon" data-lucide="copy"></i><span>Copy Address</span></button>
+                            <button class="menu-item" data-action="qr"><i class="icon" data-lucide="qr-code"></i><span>Show QR</span></button>
+                            <button class="menu-item" data-action="refresh"><i class="icon" data-lucide="refresh-cw"></i><span>Refresh</span></button>
+                            <div class="menu-sep"></div>
+                            <button class="menu-item only-desktop" data-action="command"><i class="icon" data-lucide="command"></i><span>Command Palette</span></button>
+                        </div>
+                    </div>
+                </div>
+
+                
+               
+            </div>
+    </nav>
+    
+    <div class="app-container">
+        <div class="wrap-app">
+            <div class="side-nav" id="side-nav" style="display: none;">
+                <div class="side-nav-item" id="side-change-page-wallet">
+                    <i class="icon" data-lucide="home" title="Wallet"></i>
+                    Wallet
+                </div>
+                <div class="side-nav-item" id="side-change-page-ide">
+                    <i class="icon" data-lucide="code" title="IDE"></i>
+                    IDE
+                </div>
+                <div class="side-nav-item" id="side-change-page-ecosystem-news" style="margin-top: auto;">
+                    <i class="icon" data-lucide="newspaper" title="Ecosystem News"></i>
+                    Chain News
+                </div>
+                <div class="side-nav-item" id="side-change-page-insights" style="display: none;">
+                    <i class="icon" data-lucide="bar-chart-2" title="Insights"></i>
+                    Insights
+                </div>
+                <div class="side-nav-item" id="side-change-page-settings" >
+                    <i class="icon" data-lucide="settings" title="Settings"></i>
+                    Settings
+                </div>
+                
+                <div class="side-nav-item" id="side-lock-wallet">
+                    <i class="icon" data-lucide="lock" title="Lock Wallet"></i>
+                    Logout
+                </div>
+            </div>
+            <div class="app-box" >
+                <div  style="
+display: flex;
+
+height: 100%;
+">
+<div style="
+display: flex;max-width: 100%; width: 100%;flex-direction: column;;
+" id="app-box">
+</div>
+</div>
+            </div>
+        </div>
+    </div>
+
+    
+
+   
+
+    <!-- Command Palette -->
+    <div id="cmdk" class="cmdk hidden" aria-hidden="true">
+        <div class="cmdk-dialog">
+            <div class="cmdk-header">
+                <i class="icon" data-lucide="search"></i>
+                <input id="cmdkInput" type="text" placeholder="Type a command or search…" autocomplete="off" />
+                <span class="cmdk-hint">Esc</span>
+            </div>
+            <ul id="cmdkList" class="cmdk-list"></ul>
+        </div>
+    </div>
+
+    <!-- Modal (replaces window.alert) -->
+    <div id="modalRoot" class="x-modal hidden" aria-hidden="true">
+        <div class="x-modal-overlay" id="modalOverlay"></div>
+        <div class="x-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <div class="x-modal-header">
+                <i class="icon" data-lucide="alert-circle"></i>
+                <h3 id="modalTitle">Notice</h3>
+            </div>
+            <div class="x-modal-body"><p id="modalMessage"></p></div>
+            <div class="x-modal-footer">
+                <button id="modalCancelBtn" class="btn btn-secondary" style="display:none">Cancel</button>
+                <button id="modalOkBtn" class="btn btn-primary">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- QR Modal -->
+    <div id="qrModalRoot" class="x-modal hidden" aria-hidden="true">
+        <div class="x-modal-overlay" id="qrModalOverlay"></div>
+        <div class="x-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="qrModalTitle">
+            <div class="x-modal-header">
+                <i class="icon" data-lucide="qr-code"></i>
+                <h3 id="qrModalTitle">Your Receive QR</h3>
+            </div>
+            <div class="x-modal-body" style="display:flex; flex-direction:column; align-items:center; gap:.75rem;">
+                <div id="qrContainer" style="padding:.5rem; background:rgba(255,255,255,.04); border-radius:12px;"></div>
+                <div id="qrAddress" style="word-break:break-all; opacity:.85;"></div>
+            </div>
+            <div class="x-modal-footer">
+                <button id="qrCloseBtn" class="btn btn-secondary">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/providers/bootstrap-bundle.min.js"></script>
+    <script src="js/toaster.js"></script>
+    <script src="js/providers/libsodium.js"></script>
+    <script src="js/providers/nacl.js"></script>
+    <script src="js/cookietoolz.js"></script>
+    <script src="js/placeholder.min.js"></script>
+    <script src="js/performance-monitor.js"></script>
+    <script src="js/template-cache.js"></script>
+    <script src="js/crypto-worker-manager.js"></script>
+    <script src="js/pyodide-worker-manager.js"></script>
+    <script src="js/xian.js?v=132337"></script>
+    <script src="js/wallet-manager.js?v=1"></script>
+    <script src="js/providers/lucide.js"></script>
+    <script src="js/router.js?v=13377"></script>
+    <script src="js/helpers.js"></script>
+    <script src="js/providers/codemirror.js"></script>
+    <script src="js/providers/python.js"></script>
+    <script src="js/providers/lint.js"></script>
+    <script src="js/providers/qrcode.min.js"></script>
+    <script src="js/modal.js?v=1"></script>
+    <script src="js/ui-enhancements.js?v=1"></script>
+    
+    <script src="js/index.js?v=122"></script>
+    <script src="js/extension.js"></script>
+    <script src="js/tx-result-manager.js"></script>
+    <script src="js/providers/pyodide-0.25.1/pyodide.js"></script>
+</body>
+</html>
